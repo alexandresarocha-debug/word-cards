@@ -21,10 +21,15 @@ h1{font-size:1.1rem;color:#8a6d46;letter-spacing:.08em;text-transform:uppercase;
 .nav{margin-top:22px;display:flex;gap:12px;align-items:center}
 button{font:inherit;background:#8a6d46;color:#fff;border:0;border-radius:999px;padding:10px 18px;cursor:pointer}
 #count{color:#8a6d46;min-width:60px;text-align:center}
+#quiz{display:none;width:min(92vw,560px);background:#fff;border:3px solid #8a6d46;border-radius:22px;padding:24px;box-sizing:border-box;box-shadow:0 14px 40px rgba(0,0,0,.12)}
+#quiz .qt{font-size:.75rem;color:#8a6d46;letter-spacing:.1em;margin-bottom:10px}#quiz .qq{font-size:1.1rem;line-height:1.45;margin-bottom:16px}
+#quiz .opt{display:block;width:100%;margin:8px 0;background:#f4efe6;color:#222;text-align:left;border-radius:14px}
+#quiz .opt.ok{background:#bfe3b4}#quiz .opt.no{background:#f2b8b0}#quiz .sc{color:#8a6d46;margin-top:12px;text-align:center}
+body.qz .stage,body.qz #prev,body.qz #next,body.qz #play,body.qz #shuf,body.qz #count{display:none}body.qz #quiz{display:block}
 </style></head><body>
 <select id="deck"></select>
-<div class="stage" id="stage"></div>
-<div class="nav"><button id="prev">‹</button><button id="play">Pause</button><span id="count"></span><button id="shuf">Shuffle</button><button id="next">›</button></div>
+<div class="stage" id="stage"></div><div id="quiz"></div>
+<div class="nav"><button id="prev">‹</button><button id="play">Pause</button><span id="count"></span><button id="shuf">Shuffle</button><button id="next">›</button><button id="qb">Quiz</button></div>
 <script src="cards.js"></script>
 <script>
 const books=[...new Set(CARDS.map(c=>c.book))];const dk=document.getElementById("deck");dk.innerHTML=`<option value="">All words</option>`+books.map(b=>`<option>${b}</option>`).join("");let C=CARDS;dk.onchange=()=>{C=dk.value?CARDS.filter(c=>c.book==dk.value):CARDS;order=C.map((_,i)=>i);i=0;build();reset()};
@@ -43,6 +48,23 @@ shuf.onclick=()=>{order.sort(()=>Math.random()-.5);i=0;build();reset()};
 let x0,sw=0;st.addEventListener('touchstart',e=>x0=e.touches[0].clientX);st.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){sw=Date.now();go(dx<0?1:-1)}});
 document.onkeydown=e=>{if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1);if(e.key==' ')st.children[i].click()};
 build();reset();
+
+let qs=0,qn=0;
+function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function blank(c){if(!c.quote)return null;const w=c.word.replace(/one's|someone's|oneself/g,'').trim().split(/\s+/).filter(x=>x.length>2);let s=c.quote,hit=0;w.forEach(x=>{const r=new RegExp('\\b'+esc(x.slice(0,Math.max(3,x.length-2)))+'\\w*','gi');if(r.test(s)){hit++;s=s.replace(r,'_____')}});return hit?s:null}
+function ask(){const q=document.getElementById('quiz');if(C.length<2){q.innerHTML='<div class="qq">Need at least two cards in this deck.</div>';return}
+const c=C[Math.floor(Math.random()*C.length)],pool=C.filter(x=>x!==c).sort(()=>Math.random()-.5).slice(0,3),opts=[c,...pool].sort(()=>Math.random()-.5);
+const b=blank(c),type=Math.random()<.5&&b?1:0,type2=Math.random()<.3;
+let title,txt,lab;
+if(type){title='FILL THE GAP';txt=b;lab=x=>x.word}
+else if(type2){title='WHAT DOES IT MEAN?';txt='<b>'+c.word+'</b>';lab=x=>x.meaning}
+else{title='WHICH ONE MEANS…';txt=c.meaning;lab=x=>x.word}
+q.innerHTML=`<div class="qt">${title}</div><div class="qq">${txt}</div>`+opts.map((x,k)=>`<button class="opt" data-k="${k}">${lab(x)}</button>`).join('')+`<div class="sc">${qs} / ${qn} correct</div>`;
+q.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{if(q.dataset.done==1)return;q.dataset.done=1;const ch=opts[btn.dataset.k];qn++;if(ch===c)qs++;
+q.querySelectorAll('.opt').forEach(o=>{if(opts[o.dataset.k]===c)o.classList.add('ok')});if(ch!==c)btn.classList.add('no');
+q.querySelector('.sc').innerHTML=`${qs} / ${qn} correct<br><small>${c.word}: ${c.meaning}</small><br><button id="nq" style="margin-top:10px">Next question</button>`;document.getElementById('nq').onclick=ask});q.dataset.done=0}
+document.getElementById('qb').onclick=e=>{const on=document.body.classList.toggle('qz');e.target.textContent=on?'Cards':'Quiz';if(on){clearInterval(t);qs=qn=0;ask()}else reset()};
+dk.addEventListener('change',()=>{if(document.body.classList.contains('qz')){qs=qn=0;ask()}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)reset()});window.addEventListener('pageshow',reset);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
 </script></body></html>
