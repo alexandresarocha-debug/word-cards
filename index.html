@@ -7,7 +7,7 @@ body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:ce
 h1{font-size:1.1rem;color:#8a6d46;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px}
 .stage{perspective:1400px;width:min(92vw,560px);height:min(78vh,460px);position:relative}
 .card{position:absolute;inset:0;transition:transform .7s,opacity .5s;transform-style:preserve-3d;cursor:pointer}
-.card.hidden{opacity:0;pointer-events:none;transform:translateX(60px)}
+.card.hidden{opacity:0;visibility:hidden;pointer-events:none;transform:translateX(60px)}
 .card.flipped .inner{transform:rotateY(180deg)}
 .inner{position:absolute;inset:0;transition:transform .7s;transform-style:preserve-3d}
 .face{position:absolute;inset:0;backface-visibility:hidden;background:#fff;border:3px solid #8a6d46;border-radius:22px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;box-shadow:0 14px 40px rgba(0,0,0,.12)}
@@ -32,16 +32,17 @@ const st=document.getElementById('stage');let order=C.map((_,i)=>i),i=0,play=tru
 function build(){st.innerHTML='';order.forEach((k,n)=>{const c=C[k],d=document.createElement('div');d.className='card hidden';
 d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span><div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
 <div class="face back"><span class="tag">MEANING</span><div class="m">${c.meaning}</div>${c.quote?`<q>${c.quote}</q>`:""}${c.example?`<q>${c.example}</q>`:""}<div class="col">${c.collocations.map(x=>`<span>${x}</span>`).join("")}</div><span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>`;
-d.onclick=()=>{d.classList.toggle('flipped');reset()};st.appendChild(d)});show()}
+d.onclick=()=>{if(Date.now()-sw<400)return;d.classList.toggle('flipped');reset()};st.appendChild(d)});show()}
 function show(){[...st.children].forEach((d,n)=>{d.classList.toggle('hidden',n!==i);if(n!==i)d.classList.remove('flipped')});document.getElementById('count').textContent=`${i+1} / ${C.length}`}
 function go(n){i=(i+n+C.length)%C.length;show();reset()}
-function tick(){const d=st.children[i];if(!d.classList.contains('flipped'))d.classList.add('flipped');else go(1)}
+function tick(){const d=st.children[i];if(!d)return;if(!d.classList.contains('flipped'))d.classList.add('flipped');else go(1)}
 function reset(){clearInterval(t);if(play)t=setInterval(tick,4000)}
 prev.onclick=()=>go(-1);next.onclick=()=>go(1);
 document.getElementById('play').onclick=e=>{play=!play;e.target.textContent=play?'Pause':'Play';reset()};
 shuf.onclick=()=>{order.sort(()=>Math.random()-.5);i=0;build();reset()};
-let x0;st.addEventListener('touchstart',e=>x0=e.touches[0].clientX);st.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1)});
+let x0,sw=0;st.addEventListener('touchstart',e=>x0=e.touches[0].clientX);st.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){sw=Date.now();go(dx<0?1:-1)}});
 document.onkeydown=e=>{if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1);if(e.key==' ')st.children[i].click()};
 build();reset();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)reset()});window.addEventListener('pageshow',reset);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
 </script></body></html>

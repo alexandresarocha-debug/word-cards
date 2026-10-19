@@ -236,8 +236,8 @@ const CARDS = [
   "word": "prick up one's ears",
   "pos": "idiom",
   "meaning": "to start listening closely all of a sudden",
-  "quote": "",
-  "example": "",
+  "quote": "At the sound of her own name drifting across the crowded room, Leo pricked up his ears and lost the thread of his conversation.",
+  "example": "Instead of: Leo got interested when he heard his name.",
   "page": "",
   "collocations": [
    "prick up your ears at",
