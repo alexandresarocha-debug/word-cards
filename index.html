@@ -26,10 +26,11 @@ button{font:inherit;background:#8a6d46;color:#fff;border:0;border-radius:999px;p
 #quiz .opt{display:block;width:100%;margin:8px 0;background:#f4efe6;color:#222;text-align:left;border-radius:14px}
 #quiz .opt.ok{background:#bfe3b4}#quiz .opt.no{background:#f2b8b0}#quiz .sc{color:#8a6d46;margin-top:12px;text-align:center}
 body.qz .stage,body.qz #prev,body.qz #next,body.qz #play,body.qz #shuf,body.qz #count{display:none}body.qz #quiz{display:block}
+.top{display:flex;gap:10px;align-items:center;margin:0 0 18px;flex-wrap:wrap;justify-content:center}.top #deck{margin:0}.seg{display:flex;border:2px solid #8a6d46;border-radius:999px;overflow:hidden}.seg button{border-radius:0;background:#fff;color:#8a6d46;padding:8px 16px}.seg button.on{background:#8a6d46;color:#fff}
 </style></head><body>
-<select id="deck"></select>
+<div class="top"><select id="deck"></select><div class="seg"><button id="mc" class="on">Cards</button><button id="mq">Quiz</button></div></div>
 <div class="stage" id="stage"></div><div id="quiz"></div>
-<div class="nav"><button id="prev">‹</button><button id="play">Pause</button><span id="count"></span><button id="shuf">Shuffle</button><button id="next">›</button><button id="qb">Quiz</button></div>
+<div class="nav"><button id="prev">‹</button><button id="play">Pause</button><span id="count"></span><button id="shuf">Shuffle</button><button id="next">›</button></div>
 <script src="cards.js"></script>
 <script>
 const books=[...new Set(CARDS.map(c=>c.book))];const dk=document.getElementById("deck");dk.innerHTML=`<option value="">All words</option>`+books.map(b=>`<option>${b}</option>`).join("");let C=CARDS;dk.onchange=()=>{C=dk.value?CARDS.filter(c=>c.book==dk.value):CARDS;order=C.map((_,i)=>i);i=0;build();reset()};
@@ -63,7 +64,8 @@ q.innerHTML=`<div class="qt">${title}</div><div class="qq">${txt}</div>`+opts.ma
 q.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{if(q.dataset.done==1)return;q.dataset.done=1;const ch=opts[btn.dataset.k];qn++;if(ch===c)qs++;
 q.querySelectorAll('.opt').forEach(o=>{if(opts[o.dataset.k]===c)o.classList.add('ok')});if(ch!==c)btn.classList.add('no');
 q.querySelector('.sc').innerHTML=`${qs} / ${qn} correct<br><small>${c.word}: ${c.meaning}</small><br><button id="nq" style="margin-top:10px">Next question</button>`;document.getElementById('nq').onclick=ask});q.dataset.done=0}
-document.getElementById('qb').onclick=e=>{const on=document.body.classList.toggle('qz');e.target.textContent=on?'Cards':'Quiz';if(on){clearInterval(t);qs=qn=0;ask()}else reset()};
+function mode(q){document.body.classList.toggle('qz',q);mc.classList.toggle('on',!q);mq.classList.toggle('on',q);if(q){clearInterval(t);qs=qn=0;ask()}else reset()}
+mc.onclick=()=>mode(false);mq.onclick=()=>mode(true);
 dk.addEventListener('change',()=>{if(document.body.classList.contains('qz')){qs=qn=0;ask()}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)reset()});window.addEventListener('pageshow',reset);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
