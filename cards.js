@@ -344,5 +344,31 @@ const CARDS = [
    "steal a glance at",
    "steal a look"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "the hairs on the back of one's neck stand up",
+  "pos": "idiom",
+  "meaning": "a prickling sense of dread or alertness, felt before you know why",
+  "quote": "Marguerite stepped into the empty chapel, and the hairs on the back of her neck stood up as the door sighed shut behind her.",
+  "example": "Instead of: Marguerite felt afraid when she entered the empty chapel.",
+  "page": "",
+  "collocations": [
+   "make the hairs on your neck stand up",
+   "the hairs on my arms stood up"
+  ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "a lump in one's throat",
+  "pos": "idiom",
+  "meaning": "a tight feeling in the throat from strong emotion, just before tears",
+  "quote": "When her father pressed the bundle of yellowed letters into her palm, Marta felt a lump rise in her throat.",
+  "example": "Instead of: Marta was deeply moved when her father handed her the old letters.",
+  "page": "",
+  "collocations": [
+   "a lump rose in her throat",
+   "swallow the lump in one's throat"
+  ]
  }
 ];
