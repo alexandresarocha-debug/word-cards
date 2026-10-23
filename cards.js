@@ -370,5 +370,18 @@ const CARDS = [
    "a lump rose in her throat",
    "swallow the lump in one's throat"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "knit one's brows",
+  "pos": "idiom",
+  "meaning": "to draw the eyebrows together in concentration, puzzlement, or quiet displeasure",
+  "quote": "Elena knit her brows over the ledger, tracing the same column of figures a third time with the tip of her pen.",
+  "example": "Instead of: Elena was confused by the numbers in the ledger.",
+  "page": "",
+  "collocations": [
+   "knit her brows in concentration",
+   "with knitted brows"
+  ]
  }
 ];
