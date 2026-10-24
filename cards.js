@@ -383,5 +383,18 @@ const CARDS = [
    "knit her brows in concentration",
    "with knitted brows"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "shuffle one's feet",
+  "pos": "idiom",
+  "meaning": "to shift one's feet restlessly from awkwardness, embarrassment, or reluctance",
+  "quote": "Tomás shuffled his feet on the worn doormat, turning his cap round and round in his hands before he finally knocked.",
+  "example": "Instead of: Tomás was nervous about apologizing to his neighbor.",
+  "page": "",
+  "collocations": [
+   "shuffle his feet awkwardly",
+   "stand shuffling one's feet"
+  ]
  }
 ];
