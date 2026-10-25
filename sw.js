@@ -1,4 +1,4 @@
-const V='words-v14';const F=['./','index.html','cards.js','manifest.json','icon-192.png','icon-512.png'];
+const V='words-v15';const F=['./','index.html','cards.js','manifest.json','icon-192.png','icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(F)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))));self.clients.claim()});
 function good(r,req){if(!r||!r.ok||r.redirected)return false;const t=r.headers.get('content-type')||'';if(req.mode==='navigate'||req.url.endsWith('.html'))return t.includes('text/html');if(req.url.endsWith('.js'))return t.includes('javascript');return true}

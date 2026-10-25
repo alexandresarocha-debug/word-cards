@@ -396,5 +396,18 @@ const CARDS = [
    "shuffle his feet awkwardly",
    "stand shuffling one's feet"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "grit one's teeth",
+  "pos": "idiom",
+  "meaning": "to clench the jaw and press on through pain, anger, or an ordeal by sheer will",
+  "quote": "Inês gritted her teeth as the iodine met the cut, her knuckles whitening around the edge of the kitchen table.",
+  "example": "Instead of: Inês was in pain but tried to be brave while her wound was cleaned.",
+  "page": "",
+  "collocations": [
+   "grit her teeth and bear it",
+   "through gritted teeth"
+  ]
  }
 ];
