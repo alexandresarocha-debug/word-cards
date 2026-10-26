@@ -409,5 +409,18 @@ const CARDS = [
    "grit her teeth and bear it",
    "through gritted teeth"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "go weak at the knees",
+  "pos": "idiom",
+  "meaning": "to feel one's legs falter under a rush of emotion, whether desire, relief, fear, or awe",
+  "quote": "When the surgeon stepped through the double doors and smiled, Beatriz went weak at the knees and caught the back of a plastic chair.",
+  "example": "Instead of: Beatriz was overwhelmed with relief when she heard the surgery had gone well.",
+  "page": "",
+  "collocations": [
+   "go weak at the knees with relief",
+   "make someone weak at the knees"
+  ]
  }
 ];
