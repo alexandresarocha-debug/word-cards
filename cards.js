@@ -422,5 +422,18 @@ const CARDS = [
    "go weak at the knees with relief",
    "make someone weak at the knees"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "pace up and down",
+  "pos": "phrasal verb",
+  "meaning": "to walk back and forth in a small space, restless or anxious",
+  "quote": "Rafael paced up and down the narrow hallway, pausing each time at the window to scan the dark street before turning on his heel again.",
+  "example": "Instead of: Rafael was worried because his daughter was late coming home.",
+  "page": "",
+  "collocations": [
+   "pace up and down the room",
+   "pace anxiously up and down"
+  ]
  }
 ];
