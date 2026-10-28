@@ -435,5 +435,18 @@ const CARDS = [
    "pace up and down the room",
    "pace anxiously up and down"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "the color drains from one's face",
+  "pos": "idiom",
+  "meaning": "to turn suddenly pale from shock, fear, or dreadful realization",
+  "quote": "Clara unfolded the telegram, and the color drained from her face; the cup in her other hand began to rattle against its saucer.",
+  "example": "Instead of: Clara was shocked by the bad news in the telegram.",
+  "page": "",
+  "collocations": [
+   "the color drained from her cheeks",
+   "watch the color drain from his face"
+  ]
  }
 ];
