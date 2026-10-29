@@ -448,5 +448,18 @@ const CARDS = [
    "the color drained from her cheeks",
    "watch the color drain from his face"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "hold one's breath",
+  "pos": "idiom",
+  "meaning": "to stop breathing for a moment in suspense, fear, or anticipation",
+  "quote": "As the auctioneer raised his gavel, Helena held her breath, her gloved fingers frozen around the paddle in her lap.",
+  "example": "Instead of: Helena was anxious to know whether she had won the painting.",
+  "page": "",
+  "collocations": [
+   "hold your breath and wait",
+   "the whole room held its breath"
+  ]
  }
 ];
