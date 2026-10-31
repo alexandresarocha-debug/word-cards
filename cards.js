@@ -461,5 +461,31 @@ const CARDS = [
    "hold your breath and wait",
    "the whole room held its breath"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "avert one's eyes",
+  "pos": "idiom",
+  "meaning": "to turn one's gaze away out of shame, guilt, pity, or discomfort",
+  "quote": "When his mother asked who had broken the vase, Duarte averted his eyes and studied the pattern of the rug as if it held the answer.",
+  "example": "Instead of: Duarte felt guilty about breaking the vase.",
+  "page": "",
+  "collocations": [
+   "avert your eyes from the scene",
+   "quickly averted her eyes"
+  ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "clench one's fists",
+  "pos": "idiom",
+  "meaning": "to curl the fingers tightly into the palms, holding anger or emotion in check",
+  "quote": "Sofia said nothing as the landlord read out the new rent, but beneath the table she clenched her fists until her nails left crescents in her palms.",
+  "example": "Instead of: Sofia was furious about the rent increase but kept quiet.",
+  "page": "",
+  "collocations": [
+   "clenched his fists in anger",
+   "clench your fists at your sides"
+  ]
  }
 ];
