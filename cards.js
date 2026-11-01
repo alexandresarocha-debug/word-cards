@@ -360,6 +360,36 @@ const CARDS = [
   ]
  },
  {
+  "book": "Annihilation",
+  "word": "train on",
+  "pos": "phrasal verb",
+  "meaning": "to aim or point a light, camera, or weapon at something",
+  "quote": "“Look!” the surveyor said, training her flashlight down into the archway.",
+  "example": "He trained the flashlight on the lock.",
+  "page": "",
+  "collocations": [
+   "train a light on",
+   "train a flashlight on",
+   "train a gun on",
+   "training down into"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "parse",
+  "pos": "verb",
+  "meaning": "to break something down into parts so you can understand it, especially language or meaning",
+  "quote": "I was still trying to parse the lingual meaning…",
+  "example": "She paused, trying to parse what he meant by that.",
+  "page": "",
+  "collocations": [
+   "parse the meaning",
+   "parse a sentence",
+   "hard to parse",
+   "parse what someone said"
+  ]
+ },
+ {
   "book": "Aleksei's phrases",
   "word": "shrink back",
   "pos": "phrasal verb",
