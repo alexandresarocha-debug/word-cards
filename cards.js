@@ -487,5 +487,18 @@ const CARDS = [
    "clenched his fists in anger",
    "clench your fists at your sides"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "throw up one's hands",
+  "pos": "idiom",
+  "meaning": "to raise both hands in exasperation or surrender, conceding nothing more can be done",
+  "quote": "When the third tenant arrived to complain about the boiler, Marcelo threw up his hands and let the clipboard clatter onto the counter.",
+  "example": "Instead of: Marcelo was exasperated and gave up trying to fix the problem.",
+  "page": "",
+  "collocations": [
+   "threw up her hands in despair",
+   "throw up your hands and walk away"
+  ]
  }
 ];
