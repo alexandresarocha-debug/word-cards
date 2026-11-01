@@ -22,8 +22,9 @@ h1{font-size:1.1rem;color:#8a6d46;letter-spacing:.08em;text-transform:uppercase;
 .back .m{font-weight:bold;font-size:1.1rem;margin-bottom:14px}.back q{color:#444;display:block;margin-bottom:10px}
 .back .ill{display:none}
 .back.show-pic .ill{display:block;position:absolute;z-index:1;left:16px;right:16px;top:50px;bottom:42px;width:calc(100% - 32px);height:calc(100% - 92px);object-fit:contain;border-radius:14px;background:#f4efe6;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
-button.picbtn{position:absolute;top:12px;right:14px;z-index:6;transform:translateZ(20px) scale(0);visibility:hidden;opacity:0;pointer-events:none;font-size:.78rem;letter-spacing:.04em;line-height:1;padding:6px 12px;background:#fffdf8;color:#8a6d46;border:1.5px solid #8a6d46;border-radius:999px}
+button.picbtn{position:absolute;top:12px;right:14px;z-index:6;transform:translateZ(20px) scale(0);visibility:hidden;opacity:0;pointer-events:none;font-size:.78rem;letter-spacing:.04em;line-height:1;padding:6px 12px;background:#fffdf8;color:#8a6d46;border:1.5px solid #8a6d46;border-radius:999px;transition:visibility 0s linear .7s,opacity 0s linear .7s,transform 0s linear .7s,pointer-events 0s linear .7s}
 .card.flipped button.picbtn{visibility:visible;opacity:1;pointer-events:auto;transform:translateZ(20px) scale(1)}
+.card:not(.flipped) button.picbtn{transition:none}
 button.picbtn[aria-pressed="true"]{background:#8a6d46;color:#fff}
 .col{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.col span{background:#fbe9b7;border-radius:999px;padding:3px 10px;font-size:.85rem;color:#5a4320}
 .src{position:absolute;bottom:14px;right:22px;font-size:.8rem;color:#8a6d46}
