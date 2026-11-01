@@ -1,4 +1,4 @@
-const V='words-v31';const F=['./','index.html','cards.js','manifest.json','icon-192.png','icon-512.png','images/gnarled.jpg','images/bogs.jpg','images/loam.jpg','images/bark.jpg','images/scaly.jpg','images/strewn.jpg','images/doused.jpg','images/brackishness.jpg'];
+const V='words-v32';const F=['./','index.html','cards.js','manifest.json','icon-192.png','icon-512.png','images/gnarled.jpg','images/bogs.jpg','images/loam.jpg','images/bark.jpg','images/scaly.jpg','images/strewn.jpg','images/doused.jpg','images/brackishness.jpg'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(V).then(c=>Promise.all(F.map(u=>fetch(new Request(u,{cache:'reload'})).then(r=>{if(!r.ok)throw new Error(u);return c.put(u,r)})))));
   self.skipWaiting();

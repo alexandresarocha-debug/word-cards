@@ -20,12 +20,11 @@ h1{font-size:1.1rem;color:#8a6d46;letter-spacing:.08em;text-transform:uppercase;
 .front .w{font-size:clamp(2.4rem,9vw,4rem);font-weight:bold}.front .p{color:#777;margin-top:8px}
 .back{transform:rotateY(180deg) translateZ(1px);font-size:1rem;line-height:1.45}
 .back .m{font-weight:bold;font-size:1.1rem;margin-bottom:14px}.back q{color:#444;display:block;margin-bottom:10px}
-.back.has-ill{--ill:clamp(40px,7dvh,64px);justify-content:flex-start;padding:46px 18px 40px;font-size:1.08rem;line-height:1.45}
-.back.has-ill .spread{position:absolute;left:18px;right:18px;top:calc(46px + var(--ill) + 12px);bottom:50px;display:flex;flex-direction:column;justify-content:space-between}
-.back.has-ill .m{font-size:1.28rem;margin:0}.back.has-ill q{margin:0}.back.has-ill .col{margin:0}
-.back.has-ill .col span{font-size:.98rem}
-.back .ill{display:block;width:100%;height:var(--ill,clamp(40px,7dvh,64px));object-fit:cover;border-radius:12px;margin:0;flex:none;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
-@media (max-height:740px){.back.has-ill{--ill:34px;padding:42px 16px 36px}.back.has-ill .spread{left:16px;right:16px;top:calc(42px + var(--ill) + 8px);bottom:46px}}
+.back .ill{display:none}
+.back.show-pic .ill{display:block;position:absolute;z-index:1;left:16px;right:16px;top:50px;bottom:42px;width:calc(100% - 32px);height:calc(100% - 92px);object-fit:contain;border-radius:14px;background:#f4efe6;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
+button.picbtn{position:absolute;top:12px;right:14px;z-index:6;transform:translateZ(20px) scale(0);visibility:hidden;opacity:0;pointer-events:none;font-size:.78rem;letter-spacing:.04em;line-height:1;padding:6px 12px;background:#fffdf8;color:#8a6d46;border:1.5px solid #8a6d46;border-radius:999px}
+.card.flipped button.picbtn{visibility:visible;opacity:1;pointer-events:auto;transform:translateZ(20px) scale(1)}
+button.picbtn[aria-pressed="true"]{background:#8a6d46;color:#fff}
 .col{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.col span{background:#fbe9b7;border-radius:999px;padding:3px 10px;font-size:.85rem;color:#5a4320}
 .src{position:absolute;bottom:14px;right:22px;font-size:.8rem;color:#8a6d46}
 .tag{position:absolute;top:14px;left:22px;font-size:.75rem;color:#8a6d46;letter-spacing:.1em}
@@ -70,17 +69,20 @@ const STAR=`<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><
 const CHECK=`<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7.2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 function marks(c){const s=starred(c),l=learned(c);return `<div class="marks"><button type="button" class="mark fav${s?' on':''}" aria-label="Favorite" aria-pressed="${s}">${STAR}</button><button type="button" class="mark learn${l?' on':''}" aria-label="Learned" aria-pressed="${l}">${CHECK}</button></div>`}
 const st=document.getElementById('stage');let order=C.map((_,i)=>i),i=0,play=true,t;
+function closePic(d){const b=d.querySelector('.back');if(b)b.classList.remove('show-pic');const p=d.querySelector('.picbtn');if(p){p.setAttribute('aria-pressed','false');p.textContent='Picture'}}
 function build(){st.innerHTML='';if(!C.length){st.innerHTML='<div class="empty">No cards match these filters.</div>';document.getElementById('count').textContent='0 / 0';return}order.forEach((k)=>{const c=C[k],d=document.createElement('div');d.className='card hidden';
-const ill=c.image?`<img class="ill" src="${c.image}" alt="">`:'';
 const body=`<div class="m">${c.meaning}</div>${c.quote?`<q>${c.quote}</q>`:""}${c.example?`<q>${c.example}</q>`:""}<div class="col">${c.collocations.map(x=>`<span>${x}</span>`).join("")}</div>`;
-const back=c.image?`${ill}<div class="spread">${body}</div>`:body;
+const ill=c.image?`<img class="ill" alt="" src="${c.image}">`:'';
+const picbtn=c.image?`<button type="button" class="picbtn" aria-pressed="false">Picture</button>`:'';
 d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span><div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
-<div class="face back${c.image?' has-ill':''}"><span class="tag">MEANING</span>${back}<span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>${marks(c)}`;
-d.onclick=e=>{if(e.target.closest('.mark'))return;if(Date.now()-sw<400)return;d.classList.toggle('flipped');reset()};
+<div class="face back"><span class="tag">MEANING</span>${body}${ill}<span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>${marks(c)}${picbtn}`;
+d.onclick=e=>{if(e.target.closest('.mark')||e.target.closest('.picbtn')||e.target.closest('.ill'))return;if(Date.now()-sw<400)return;const backShown=d.classList.contains('flipped');d.classList.toggle('flipped');if(backShown)closePic(d);reset()};
 d.querySelectorAll('.mark').forEach(b=>b.onclick=e=>{e.stopPropagation();const flag=b.classList.contains('fav')?'star':'learned';setFlag(c,flag);const on=flag==='star'?starred(c):learned(c);d.querySelectorAll(flag==='star'?'.mark.fav':'.mark.learn').forEach(x=>{x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false')});if(!match(c))filt()});
-const img=d.querySelector('img.ill');if(img)img.onerror=()=>{const b=img.closest('.back');if(b)b.classList.remove('has-ill');img.remove()};
+const btn=d.querySelector('.picbtn'),img=d.querySelector('img.ill');
+if(btn){const toggle=e=>{e.stopPropagation();const on=d.querySelector('.back').classList.toggle('show-pic');btn.setAttribute('aria-pressed',on?'true':'false');btn.textContent=on?'Hide':'Picture';reset()};btn.onclick=toggle;if(img)img.onclick=toggle}
+if(img)img.onerror=()=>{const b=d.querySelector('.picbtn');if(b)b.remove();img.remove()};
 st.appendChild(d)});show()}
-function show(){if(!C.length){document.getElementById('count').textContent='0 / 0';return}[...st.children].forEach((d,n)=>{d.classList.toggle('hidden',n!==i);if(n!==i)d.classList.remove('flipped')});document.getElementById('count').textContent=`${i+1} / ${C.length}`}
+function show(){if(!C.length){document.getElementById('count').textContent='0 / 0';return}[...st.children].forEach((d,n)=>{d.classList.toggle('hidden',n!==i);if(n!==i){d.classList.remove('flipped');closePic(d)}});document.getElementById('count').textContent=`${i+1} / ${C.length}`}
 function go(n){if(!C.length)return;i=(i+n+C.length)%C.length;show();reset()}
 function tick(){if(!C.length)return;const d=st.children[i];if(!d||!d.classList.contains('card'))return;if(!d.classList.contains('flipped'))d.classList.add('flipped');else go(1)}
 function reset(){clearInterval(t);if(play)t=setInterval(tick,4000)}
