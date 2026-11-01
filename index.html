@@ -19,9 +19,19 @@ h1{font-size:1.1rem;color:#8a6d46;letter-spacing:.08em;text-transform:uppercase;
 .front .w{font-size:clamp(2.4rem,9vw,4rem);font-weight:bold}.front .p{color:#777;margin-top:8px}
 .back{transform:rotateY(180deg);font-size:1rem;line-height:1.45}
 .back .m{font-weight:bold;font-size:1.1rem;margin-bottom:14px}.back q{color:#444;display:block;margin-bottom:10px}
+.back.has-ill{justify-content:flex-start;padding:52px 18px 32px;font-size:.92rem;line-height:1.32}
+.back.has-ill .m{font-size:1.02rem;margin-bottom:6px}.back.has-ill q{margin-bottom:5px}.back.has-ill .col{margin-top:4px;gap:4px}
+.back .ill{display:block;width:100%;height:clamp(64px,11dvh,96px);object-fit:cover;border-radius:12px;margin:0 0 8px;flex:none;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
+@media (max-height:740px){.back.has-ill{padding:48px 16px 28px;font-size:.84rem;line-height:1.28}.back.has-ill .m{font-size:.95rem;margin-bottom:4px}.back.has-ill q{margin-bottom:3px}.back .ill{height:58px;margin-bottom:6px}}
 .col{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.col span{background:#fbe9b7;border-radius:999px;padding:3px 10px;font-size:.85rem;color:#5a4320}
 .src{position:absolute;bottom:14px;right:22px;font-size:.8rem;color:#8a6d46}
 .tag{position:absolute;top:14px;left:22px;font-size:.75rem;color:#8a6d46;letter-spacing:.1em}
+.marks{position:absolute;top:11px;right:14px;z-index:2;display:flex;gap:6px}
+button.mark{width:34px;height:34px;padding:0;border-radius:50%;background:#fffdf8;color:#8a6d46;border:1.5px solid #8a6d46;display:inline-flex;align-items:center;justify-content:center;line-height:0}
+button.mark.fav path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+button.mark.fav.on{background:#8a6d46;color:#fff}button.mark.fav.on path{fill:currentColor;stroke:none}
+button.mark.learn svg{opacity:0}button.mark.learn.on{background:#8a6d46;color:#fff}button.mark.learn.on svg{opacity:1}
+.empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;box-sizing:border-box;background:#fff;border:3px solid #8a6d46;border-radius:22px;color:#8a6d46;font-size:1.05rem;line-height:1.4}
 .nav{margin-top:10px;display:flex;gap:12px;align-items:center}
 button{font:inherit;background:#8a6d46;color:#fff;border:0;border-radius:999px;padding:10px 18px;cursor:pointer}
 #count{color:#8a6d46;min-width:60px;text-align:center}
@@ -30,9 +40,9 @@ button{font:inherit;background:#8a6d46;color:#fff;border:0;border-radius:999px;p
 #quiz .opt{display:block;width:100%;margin:8px 0;background:#f4efe6;color:#222;text-align:left;border-radius:14px}
 #quiz .opt.ok{background:#bfe3b4}#quiz .opt.no{background:#f2b8b0}#quiz .sc{color:#8a6d46;margin-top:12px;text-align:center}
 body.qz .stage,body.qz #prev,body.qz #next,body.qz #play,body.qz #shuf,body.qz #count{display:none}body.qz #quiz{display:block}
-.top{display:flex;gap:10px;align-items:center;margin:0 0 10px;flex-wrap:wrap;justify-content:center}.top #deck,.top #kind{margin:0}#kind{font:inherit;font-size:1rem;color:#8a6d46;background:#fff;border:2px solid #8a6d46;border-radius:999px;padding:8px 16px}.seg{display:flex;border:2px solid #8a6d46;border-radius:999px;overflow:hidden}.seg button{border-radius:0;background:#fff;color:#8a6d46;padding:8px 16px}.seg button.on{background:#8a6d46;color:#fff}
+.top{display:flex;gap:10px;align-items:center;margin:0 0 10px;flex-wrap:wrap;justify-content:center}.top #deck,.top #kind,.top #prog{margin:0}#kind,#prog{font:inherit;font-size:1rem;color:#8a6d46;background:#fff;border:2px solid #8a6d46;border-radius:999px;padding:8px 16px}.seg{display:flex;border:2px solid #8a6d46;border-radius:999px;overflow:hidden}.seg button{border-radius:0;background:#fff;color:#8a6d46;padding:8px 16px}.seg button.on{background:#8a6d46;color:#fff}
 </style></head><body>
-<div class="top"><select id="deck"></select><select id="kind"></select><div class="seg"><button id="mc" class="on">Cards</button><button id="mq">Quiz</button></div></div>
+<div class="top"><select id="deck"></select><select id="kind"></select><select id="prog" aria-label="Progress"><option value="">All</option><option value="fav">Favorites</option><option value="learned">Learned</option><option value="new">Unlearned</option></select><div class="seg"><button id="mc" class="on">Cards</button><button id="mq">Quiz</button></div></div>
 <div class="stage" id="stage"></div><div id="quiz"></div>
 <div class="nav"><button id="prev">‹</button><button id="play">Pause</button><span id="count"></span><button id="shuf">Shuffle</button><button id="next">›</button></div>
 <script src="cards.js"></script>
@@ -40,22 +50,38 @@ body.qz .stage,body.qz #prev,body.qz #next,body.qz #play,body.qz #shuf,body.qz #
 const books=[...new Set(CARDS.map(c=>c.book))];const dk=document.getElementById("deck");dk.innerHTML=`<option value="">All words</option>`+books.map(b=>`<option>${b}</option>`).join("");const cat=c=>{const p=(c.pos||'').toLowerCase();return p.includes('idiom')?'Idioms':p.includes('phrasal')?'Phrasal verbs':p.startsWith('verb')?'Verbs':p.startsWith('noun')?'Nouns':p.startsWith('adj')?'Adjectives':'Other'};
 const kd=document.getElementById("kind");const kinds=['Idioms','Phrasal verbs','Verbs','Nouns','Adjectives','Other'].filter(k=>CARDS.some(c=>cat(c)==k));
 kd.innerHTML=`<option value="">All types</option>`+kinds.map(k=>`<option>${k}</option>`).join("");
-let C=CARDS;function filt(){C=CARDS.filter(c=>(!dk.value||c.book==dk.value)&&(!kd.value||cat(c)==kd.value));if(!C.length){C=CARDS.filter(c=>!dk.value||c.book==dk.value);kd.value=''}order=C.map((_,i)=>i);i=0;build();reset()}
-dk.onchange=filt;kd.onchange=filt;
+const pg=document.getElementById('prog');
+const SK='wordcards-progress-v1';
+function loadState(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return {}}}
+let prog=loadState();
+function cardKey(c){return c.book+'\u0001'+c.word}
+function starred(c){return !!(prog[cardKey(c)]&&prog[cardKey(c)].star)}
+function learned(c){return !!(prog[cardKey(c)]&&prog[cardKey(c)].learned)}
+function setFlag(c,flag){const k=cardKey(c);const e=Object.assign({star:false,learned:false},prog[k]||{});e[flag]=!e[flag];if(!e.star&&!e.learned)delete prog[k];else prog[k]=e;try{localStorage.setItem(SK,JSON.stringify(prog))}catch(err){}}
+function match(c){if(dk.value&&c.book!==dk.value)return false;if(kd.value&&cat(c)!==kd.value)return false;if(pg.value==='fav'&&!starred(c))return false;if(pg.value==='learned'&&!learned(c))return false;if(pg.value==='new'&&learned(c))return false;return true}
+let C=CARDS;function filt(){C=CARDS.filter(match);order=C.map((_,n)=>n);i=0;build();reset()}
+dk.onchange=filt;kd.onchange=filt;pg.onchange=filt;
+const STAR=`<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2.7l2.6 5.7 6.2.7-4.6 4.2 1.3 6.1L12 16.8 6.5 19.4l1.3-6.1L3.2 9.1l6.2-.7z"/></svg>`;
+const CHECK=`<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7.2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+function marks(c){const s=starred(c),l=learned(c);return `<div class="marks"><button type="button" class="mark fav${s?' on':''}" aria-label="Favorite" aria-pressed="${s}">${STAR}</button><button type="button" class="mark learn${l?' on':''}" aria-label="Learned" aria-pressed="${l}">${CHECK}</button></div>`}
 const st=document.getElementById('stage');let order=C.map((_,i)=>i),i=0,play=true,t;
-function build(){st.innerHTML='';order.forEach((k,n)=>{const c=C[k],d=document.createElement('div');d.className='card hidden';
-d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span><div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
-<div class="face back"><span class="tag">MEANING</span><div class="m">${c.meaning}</div>${c.quote?`<q>${c.quote}</q>`:""}${c.example?`<q>${c.example}</q>`:""}<div class="col">${c.collocations.map(x=>`<span>${x}</span>`).join("")}</div><span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>`;
-d.onclick=()=>{if(Date.now()-sw<400)return;d.classList.toggle('flipped');reset()};st.appendChild(d)});show()}
-function show(){[...st.children].forEach((d,n)=>{d.classList.toggle('hidden',n!==i);if(n!==i)d.classList.remove('flipped')});document.getElementById('count').textContent=`${i+1} / ${C.length}`}
-function go(n){i=(i+n+C.length)%C.length;show();reset()}
-function tick(){const d=st.children[i];if(!d)return;if(!d.classList.contains('flipped'))d.classList.add('flipped');else go(1)}
+function build(){st.innerHTML='';if(!C.length){st.innerHTML='<div class="empty">No cards match these filters.</div>';document.getElementById('count').textContent='0 / 0';return}order.forEach((k)=>{const c=C[k],d=document.createElement('div');d.className='card hidden';
+const ill=c.image?`<img class="ill" src="${c.image}" alt="">`:'',m=marks(c);
+d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span>${m}<div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
+<div class="face back${c.image?' has-ill':''}"><span class="tag">MEANING</span>${m}${ill}<div class="m">${c.meaning}</div>${c.quote?`<q>${c.quote}</q>`:""}${c.example?`<q>${c.example}</q>`:""}<div class="col">${c.collocations.map(x=>`<span>${x}</span>`).join("")}</div><span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>`;
+d.onclick=e=>{if(e.target.closest('.mark'))return;if(Date.now()-sw<400)return;d.classList.toggle('flipped');reset()};
+d.querySelectorAll('.mark').forEach(b=>b.onclick=e=>{e.stopPropagation();const flag=b.classList.contains('fav')?'star':'learned';setFlag(c,flag);const on=flag==='star'?starred(c):learned(c);d.querySelectorAll(flag==='star'?'.mark.fav':'.mark.learn').forEach(x=>{x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false')});if(!match(c))filt()});
+const img=d.querySelector('img.ill');if(img)img.onerror=()=>{const b=img.closest('.back');if(b)b.classList.remove('has-ill');img.remove()};
+st.appendChild(d)});show()}
+function show(){if(!C.length){document.getElementById('count').textContent='0 / 0';return}[...st.children].forEach((d,n)=>{d.classList.toggle('hidden',n!==i);if(n!==i)d.classList.remove('flipped')});document.getElementById('count').textContent=`${i+1} / ${C.length}`}
+function go(n){if(!C.length)return;i=(i+n+C.length)%C.length;show();reset()}
+function tick(){if(!C.length)return;const d=st.children[i];if(!d||!d.classList.contains('card'))return;if(!d.classList.contains('flipped'))d.classList.add('flipped');else go(1)}
 function reset(){clearInterval(t);if(play)t=setInterval(tick,4000)}
 prev.onclick=()=>go(-1);next.onclick=()=>go(1);
 document.getElementById('play').onclick=e=>{play=!play;e.target.textContent=play?'Pause':'Play';reset()};
 shuf.onclick=()=>{order.sort(()=>Math.random()-.5);i=0;build();reset()};
 let x0,sw=0;st.addEventListener('touchstart',e=>x0=e.touches[0].clientX);st.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){sw=Date.now();go(dx<0?1:-1)}});
-document.onkeydown=e=>{if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1);if(e.key==' ')st.children[i].click()};
+document.onkeydown=e=>{if(!C.length)return;if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1);if(e.key==' '){e.preventDefault();st.children[i].click()}};
 build();reset();
 
 let qs=0,qn=0;
@@ -74,7 +100,7 @@ q.querySelectorAll('.opt').forEach(o=>{if(opts[o.dataset.k]===c)o.classList.add(
 q.querySelector('.sc').innerHTML=`${qs} / ${qn} correct<br><small>${c.word}: ${c.meaning}</small><br><button id="nq" style="margin-top:10px">Next question</button>`;document.getElementById('nq').onclick=ask});q.dataset.done=0}
 function mode(q){document.body.classList.toggle('qz',q);mc.classList.toggle('on',!q);mq.classList.toggle('on',q);if(q){clearInterval(t);qs=qn=0;ask()}else reset()}
 mc.onclick=()=>mode(false);mq.onclick=()=>mode(true);
-[dk,kd].forEach(s=>s.addEventListener('change',()=>{if(document.body.classList.contains('qz')){qs=qn=0;ask()}}));
+[dk,kd,pg].forEach(s=>s.addEventListener('change',()=>{if(document.body.classList.contains('qz')){qs=qn=0;ask()}}));
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)reset()});window.addEventListener('pageshow',reset);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
 </script></body></html>

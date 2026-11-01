@@ -1,4 +1,5 @@
 // Add new cards here. Each card needs a 'book' field.
+// Optional "image": "images/example.jpg". Omit it, or leave it empty, for a text-only card.
 const CARDS = [
  {
   "book": "A Short Stay in Hell",
@@ -172,6 +173,7 @@ const CARDS = [
   "quote": "…the reeds and wind-gnarled trees of the marsh flats.",
   "example": "His gnarled hands could still string a bow.",
   "page": "p. 3",
+  "image": "images/gnarled.jpg",
   "collocations": [
    "gnarled trees",
    "gnarled roots",
@@ -187,6 +189,7 @@ const CARDS = [
   "quote": "Bogs and streams hid huge aquatic reptiles…",
   "example": "We skirted the bogs rather than risk sinking to the knee.",
   "page": "p. 5",
+  "image": "images/bogs.jpg",
   "collocations": [
    "peat bogs",
    "sink into a bog",
@@ -202,6 +205,7 @@ const CARDS = [
   "quote": "…now mere ornament for layers of pine-needle loam.",
   "example": "The shovel sank easily into the dark loam.",
   "page": "p. 5",
+  "image": "images/loam.jpg",
   "collocations": [
    "pine-needle loam",
    "rich loam",
@@ -247,6 +251,7 @@ const CARDS = [
   "quote": "We were on a dirt trail strewn with pebbles, dead leaves, and pine needles…",
   "example": "The floor was strewn with open books and empty cups.",
   "page": "p. 11",
+  "image": "images/strewn.jpg",
   "collocations": [
    "strewn with",
    "strewn across",
@@ -262,6 +267,7 @@ const CARDS = [
   "quote": "The tall pines, with their scaly ridges of bark, rose on both sides…",
   "example": "The lizard's scaly hide caught the sun.",
   "page": "p. 11",
+  "image": "images/scaly.jpg",
   "collocations": [
    "scaly skin",
    "scaly bark",
@@ -292,6 +298,7 @@ const CARDS = [
   "quote": "The tall pines, with their scaly ridges of bark, rose on both sides…",
   "example": "Moss clung to the damp bark.",
   "page": "p. 11",
+  "image": "images/bark.jpg",
   "collocations": [
    "tree bark",
    "ridges of bark",
@@ -337,6 +344,7 @@ const CARDS = [
   "quote": "The morning after we discovered the tower we rose early, ate our breakfast, and doused our fire.",
   "example": "She doused the campfire before they left the clearing.",
   "page": "p. 17",
+  "image": "images/doused.jpg",
   "collocations": [
    "douse a fire",
    "douse the flames",
@@ -352,6 +360,7 @@ const CARDS = [
   "quote": "…into the cool brackishness of that place…",
   "example": "A cool brackishness rose from the stairwell.",
   "page": "",
+  "image": "images/brackishness.jpg",
   "collocations": [
    "cool brackishness",
    "brackish water",
