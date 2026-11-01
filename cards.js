@@ -240,6 +240,126 @@ const CARDS = [
   ]
  },
  {
+  "book": "Annihilation",
+  "word": "strewn",
+  "pos": "verb / adj.",
+  "meaning": "scattered untidily over a surface",
+  "quote": "We were on a dirt trail strewn with pebbles, dead leaves, and pine needles…",
+  "example": "The floor was strewn with open books and empty cups.",
+  "page": "p. 11",
+  "collocations": [
+   "strewn with",
+   "strewn across",
+   "strewn about",
+   "litter-strewn"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "scaly",
+  "pos": "adj.",
+  "meaning": "covered with or resembling scales; flaky and overlapping",
+  "quote": "The tall pines, with their scaly ridges of bark, rose on both sides…",
+  "example": "The lizard's scaly hide caught the sun.",
+  "page": "p. 11",
+  "collocations": [
+   "scaly skin",
+   "scaly bark",
+   "scaly ridges",
+   "scaly surface"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "ridges",
+  "pos": "noun",
+  "meaning": "raised lines or strips along a surface",
+  "quote": "The tall pines, with their scaly ridges of bark, rose on both sides…",
+  "example": "Ridges of mud dried hard along the path.",
+  "page": "p. 11",
+  "collocations": [
+   "ridges of bark",
+   "mountain ridges",
+   "ridges along",
+   "raised ridges"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "bark",
+  "pos": "noun",
+  "meaning": "the tough outer covering of a tree trunk or branch",
+  "quote": "The tall pines, with their scaly ridges of bark, rose on both sides…",
+  "example": "Moss clung to the damp bark.",
+  "page": "p. 11",
+  "collocations": [
+   "tree bark",
+   "ridges of bark",
+   "peel the bark",
+   "rough bark"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "buffeted",
+  "pos": "verb",
+  "meaning": "struck or knocked about repeatedly by wind, waves, or force",
+  "quote": "The air was so fresh it buffeted the lungs and we strained to breathe…",
+  "example": "The little boat was buffeted by the swell all night.",
+  "page": "p. 11",
+  "collocations": [
+   "buffeted by the wind",
+   "buffeted by waves",
+   "buffet the lungs",
+   "buffeted about"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "fizzing",
+  "pos": "verb / adj.",
+  "meaning": "giving off a soft hissing or sparkling quality, as if charged with energy",
+  "quote": "Just a sudden impression of a fizzing block of light, fast fading.",
+  "example": "A fizzing light hung over the marsh, then snuffed out.",
+  "page": "p. 11",
+  "collocations": [
+   "fizzing light",
+   "fizzing with energy",
+   "fizzing sound",
+   "fizzing out"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "doused",
+  "pos": "verb",
+  "meaning": "put out a fire by soaking or smothering it; also to soak thoroughly",
+  "quote": "The morning after we discovered the tower we rose early, ate our breakfast, and doused our fire.",
+  "example": "She doused the campfire before they left the clearing.",
+  "page": "p. 17",
+  "collocations": [
+   "douse a fire",
+   "douse the flames",
+   "douse with water",
+   "doused in"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "brackishness",
+  "pos": "noun",
+  "meaning": "a slightly salty, stale quality of air or water; the feel of a place that is neither fresh nor fully salt",
+  "quote": "…into the cool brackishness of that place…",
+  "example": "A cool brackishness rose from the stairwell.",
+  "page": "",
+  "collocations": [
+   "cool brackishness",
+   "brackish water",
+   "brackish air",
+   "taste of brackishness"
+  ]
+ },
+ {
   "book": "Aleksei's phrases",
   "word": "shrink back",
   "pos": "phrasal verb",
