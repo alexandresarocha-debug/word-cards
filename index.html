@@ -9,26 +9,28 @@
 body{margin:0;min-height:100dvh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;padding:max(10px,env(safe-area-inset-top)) 12px max(10px,env(safe-area-inset-bottom));background:#f4efe6;font-family:Georgia,serif;color:#222;overflow:hidden}
 #deck{font:inherit;font-size:1rem;color:#8a6d46;background:#fff;border:2px solid #8a6d46;border-radius:999px;padding:8px 16px;margin:0 0 18px}
 h1{font-size:1.1rem;color:#8a6d46;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px}
-.stage{perspective:1400px;overflow:hidden;width:min(94vw,580px);height:min(76dvh,520px);position:relative}
-.card{position:absolute;inset:0;transition:transform .7s,opacity .5s;transform-style:preserve-3d;cursor:pointer}
+.clip{overflow:hidden;width:min(94vw,580px);height:min(76dvh,520px);position:relative}
+.scene{position:absolute;inset:0;perspective:1400px;-webkit-perspective:1400px}
+.card{position:absolute;inset:0;cursor:pointer;transform-style:preserve-3d;-webkit-transform-style:preserve-3d}
 .card.hidden{display:none}
 .card.flipped .inner{transform:rotateY(180deg)}
-.inner{position:absolute;inset:0;transition:transform .7s;transform-style:preserve-3d}
-.face{position:absolute;inset:0;backface-visibility:hidden;background:#fff;border:3px solid #8a6d46;border-radius:22px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;box-shadow:0 14px 40px rgba(0,0,0,.12)}
-.front{align-items:center;text-align:center}
+.inner{position:absolute;inset:0;transition:transform .7s;transform-style:preserve-3d;-webkit-transform-style:preserve-3d}
+.face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#fff;border:3px solid #8a6d46;border-radius:22px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;box-shadow:0 14px 40px rgba(0,0,0,.12)}
+.front{align-items:center;text-align:center;transform:rotateY(0deg) translateZ(1px)}
 .front .w{font-size:clamp(2.4rem,9vw,4rem);font-weight:bold}.front .p{color:#777;margin-top:8px}
-.back{transform:rotateY(180deg);font-size:1rem;line-height:1.45}
+.back{transform:rotateY(180deg) translateZ(1px);font-size:1rem;line-height:1.45}
 .back .m{font-weight:bold;font-size:1.1rem;margin-bottom:14px}.back q{color:#444;display:block;margin-bottom:10px}
-.back.has-ill{justify-content:flex-start;padding:46px 22px 36px;font-size:1.06rem;line-height:1.45}
-.back.has-ill .spread{flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-evenly;min-height:0}
-.back.has-ill .m{font-size:1.2rem;margin-bottom:0}.back.has-ill q{margin-bottom:0}.back.has-ill .col{margin-top:0}
-.back.has-ill .col span{font-size:.92rem}
-.back .ill{display:block;width:100%;height:clamp(40px,7dvh,64px);object-fit:cover;border-radius:12px;margin:0 0 4px;flex:none;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
-@media (max-height:740px){.back.has-ill{padding:42px 16px 32px}.back .ill{height:36px;margin-bottom:2px}}
+.back.has-ill{--ill:clamp(40px,7dvh,64px);justify-content:flex-start;padding:46px 18px 40px;font-size:1.08rem;line-height:1.45}
+.back.has-ill .spread{position:absolute;left:18px;right:18px;top:calc(46px + var(--ill) + 12px);bottom:50px;display:flex;flex-direction:column;justify-content:space-between}
+.back.has-ill .m{font-size:1.28rem;margin:0}.back.has-ill q{margin:0}.back.has-ill .col{margin:0}
+.back.has-ill .col span{font-size:.98rem}
+.back .ill{display:block;width:100%;height:var(--ill,clamp(40px,7dvh,64px));object-fit:cover;border-radius:12px;margin:0;flex:none;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
+@media (max-height:740px){.back.has-ill{--ill:34px;padding:42px 16px 36px}.back.has-ill .spread{left:16px;right:16px;top:calc(42px + var(--ill) + 8px);bottom:46px}}
 .col{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.col span{background:#fbe9b7;border-radius:999px;padding:3px 10px;font-size:.85rem;color:#5a4320}
 .src{position:absolute;bottom:14px;right:22px;font-size:.8rem;color:#8a6d46}
 .tag{position:absolute;top:14px;left:22px;font-size:.75rem;color:#8a6d46;letter-spacing:.1em}
-.marks{position:absolute;top:11px;right:14px;z-index:2;display:flex;gap:6px}
+.marks{position:absolute;top:14px;right:17px;z-index:5;display:flex;gap:6px;transform:translateZ(20px)}
+.card.flipped .marks{visibility:hidden;opacity:0;pointer-events:none;transform:translateZ(20px) scale(0)}
 button.mark{width:34px;height:34px;padding:0;border-radius:50%;background:#fffdf8;color:#8a6d46;border:1.5px solid #8a6d46;display:inline-flex;align-items:center;justify-content:center;line-height:0}
 button.mark.fav path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
 button.mark.fav.on{background:#8a6d46;color:#fff}button.mark.fav.on path{fill:currentColor;stroke:none}
@@ -42,11 +44,11 @@ button{font:inherit;background:#8a6d46;color:#fff;border:0;border-radius:999px;p
 #quiz .qill{display:block;width:100%;height:clamp(112px,30dvh,210px);object-fit:cover;border-radius:14px;margin:0 0 12px;background:#efe8dc;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
 #quiz .opt{display:block;width:100%;margin:8px 0;background:#f4efe6;color:#222;text-align:left;border-radius:14px}
 #quiz .opt.ok{background:#bfe3b4}#quiz .opt.no{background:#f2b8b0}#quiz .sc{color:#8a6d46;margin-top:12px;text-align:center}
-body.qz .stage,body.qz #prev,body.qz #next,body.qz #play,body.qz #shuf,body.qz #count{display:none}body.qz #quiz{display:block}
+body.qz .clip,body.qz #prev,body.qz #next,body.qz #play,body.qz #shuf,body.qz #count{display:none}body.qz #quiz{display:block}
 .top{display:flex;gap:10px;align-items:center;margin:0 0 10px;flex-wrap:wrap;justify-content:center}.top #deck,.top #kind,.top #prog{margin:0}#kind,#prog{font:inherit;font-size:1rem;color:#8a6d46;background:#fff;border:2px solid #8a6d46;border-radius:999px;padding:8px 16px}.seg{display:flex;border:2px solid #8a6d46;border-radius:999px;overflow:hidden}.seg button{border-radius:0;background:#fff;color:#8a6d46;padding:8px 16px}.seg button.on{background:#8a6d46;color:#fff}
 </style></head><body>
 <div class="top"><select id="deck"></select><select id="kind"></select><select id="prog" aria-label="Progress"><option value="">All</option><option value="fav">Favorites</option><option value="learned">Learned</option><option value="new">Unlearned</option></select><div class="seg"><button id="mc" class="on">Cards</button><button id="mq">Quiz</button><button id="mi" aria-label="Image quiz">Image</button></div></div>
-<div class="stage" id="stage"></div><div id="quiz"></div>
+<div class="clip"><div class="scene" id="stage"></div></div><div id="quiz"></div>
 <div class="nav"><button id="prev">‹</button><button id="play">Pause</button><span id="count"></span><button id="shuf">Shuffle</button><button id="next">›</button></div>
 <script src="cards.js"></script>
 <script>
@@ -72,8 +74,8 @@ function build(){st.innerHTML='';if(!C.length){st.innerHTML='<div class="empty">
 const ill=c.image?`<img class="ill" src="${c.image}" alt="">`:'';
 const body=`<div class="m">${c.meaning}</div>${c.quote?`<q>${c.quote}</q>`:""}${c.example?`<q>${c.example}</q>`:""}<div class="col">${c.collocations.map(x=>`<span>${x}</span>`).join("")}</div>`;
 const back=c.image?`${ill}<div class="spread">${body}</div>`:body;
-d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span>${marks(c)}<div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
-<div class="face back${c.image?' has-ill':''}"><span class="tag">MEANING</span>${back}<span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>`;
+d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span><div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
+<div class="face back${c.image?' has-ill':''}"><span class="tag">MEANING</span>${back}<span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>${marks(c)}`;
 d.onclick=e=>{if(e.target.closest('.mark'))return;if(Date.now()-sw<400)return;d.classList.toggle('flipped');reset()};
 d.querySelectorAll('.mark').forEach(b=>b.onclick=e=>{e.stopPropagation();const flag=b.classList.contains('fav')?'star':'learned';setFlag(c,flag);const on=flag==='star'?starred(c):learned(c);d.querySelectorAll(flag==='star'?'.mark.fav':'.mark.learn').forEach(x=>{x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false')});if(!match(c))filt()});
 const img=d.querySelector('img.ill');if(img)img.onerror=()=>{const b=img.closest('.back');if(b)b.classList.remove('has-ill');img.remove()};
@@ -113,5 +115,24 @@ function mode(m){qmode=m;const quiz=m!=='cards';document.body.classList.toggle('
 mc.onclick=()=>mode('cards');mq.onclick=()=>mode('quiz');mi.onclick=()=>mode('image');
 [dk,kd,pg].forEach(s=>s.addEventListener('change',()=>{if(document.body.classList.contains('qz')){qs=qn=0;ask()}}));
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)reset()});window.addEventListener('pageshow',reset);
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(sessionStorage.getItem('wc-reloaded'))return;
+    sessionStorage.setItem('wc-reloaded','1');
+    location.reload();
+  });
+  setTimeout(()=>sessionStorage.removeItem('wc-reloaded'),4000);
+  navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(reg=>{
+    const skip=w=>{if(w)w.postMessage({type:'SKIP_WAITING'})};
+    if(reg.waiting&&navigator.serviceWorker.controller)skip(reg.waiting);
+    reg.addEventListener('updatefound',()=>{
+      const nw=reg.installing;
+      if(!nw)return;
+      nw.addEventListener('statechange',()=>{if(nw.state==='installed'&&navigator.serviceWorker.controller)skip(nw)});
+    });
+    const kick=()=>reg.update().catch(()=>{});
+    kick();
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)kick()});
+  }).catch(()=>{});
+}
 </script></body></html>
