@@ -225,6 +225,21 @@ const CARDS = [
   ]
  },
  {
+  "book": "Annihilation",
+  "word": "a prickle of",
+  "pos": "noun phrase",
+  "meaning": "a sudden small rush of a feeling (fear, unease, excitement), like a sting under the skin",
+  "quote": "…the implications of this raised a prickle of alarm…",
+  "example": "A prickle of unease ran up her neck when the door clicked shut.",
+  "page": "p. 9",
+  "collocations": [
+   "a prickle of alarm",
+   "a prickle of fear",
+   "a prickle of unease",
+   "a prickle of excitement"
+  ]
+ },
+ {
   "book": "Aleksei's phrases",
   "word": "shrink back",
   "pos": "phrasal verb",
