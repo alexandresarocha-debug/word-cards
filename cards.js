@@ -165,6 +165,66 @@ const CARDS = [
   ]
  },
  {
+  "book": "Annihilation",
+  "word": "gnarled",
+  "pos": "adj.",
+  "meaning": "twisted, knotted, and rough, usually from age or harsh weather",
+  "quote": "…the reeds and wind-gnarled trees of the marsh flats.",
+  "example": "His gnarled hands could still string a bow.",
+  "page": "p. 3",
+  "collocations": [
+   "gnarled trees",
+   "gnarled roots",
+   "gnarled hands / fingers",
+   "wind-gnarled"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "bogs",
+  "pos": "noun",
+  "meaning": "wet, spongy ground, often peat-rich; a soft wetland you can sink into",
+  "quote": "Bogs and streams hid huge aquatic reptiles…",
+  "example": "We skirted the bogs rather than risk sinking to the knee.",
+  "page": "p. 5",
+  "collocations": [
+   "peat bogs",
+   "sink into a bog",
+   "boggy ground",
+   "across the bogs"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "loam",
+  "pos": "noun",
+  "meaning": "rich, soft soil; fertile earth, here layered with pine needles",
+  "quote": "…now mere ornament for layers of pine-needle loam.",
+  "example": "The shovel sank easily into the dark loam.",
+  "page": "p. 5",
+  "collocations": [
+   "pine-needle loam",
+   "rich loam",
+   "layers of loam",
+   "clay loam"
+  ]
+ },
+ {
+  "book": "Annihilation",
+  "word": "gauge",
+  "pos": "verb",
+  "meaning": "to judge or estimate something, often by feel or incomplete clues",
+  "quote": "The wind off the sea and the odd interior stillness dulled our ability to gauge direction…",
+  "example": "From his silence she tried to gauge how angry he still was.",
+  "page": "p. 5",
+  "collocations": [
+   "gauge direction",
+   "gauge someone's reaction",
+   "hard to gauge",
+   "gauge the distance"
+  ]
+ },
+ {
   "book": "Aleksei's phrases",
   "word": "shrink back",
   "pos": "phrasal verb",
