@@ -19,10 +19,12 @@ h1{font-size:1.1rem;color:#8a6d46;letter-spacing:.08em;text-transform:uppercase;
 .front .w{font-size:clamp(2.4rem,9vw,4rem);font-weight:bold}.front .p{color:#777;margin-top:8px}
 .back{transform:rotateY(180deg);font-size:1rem;line-height:1.45}
 .back .m{font-weight:bold;font-size:1.1rem;margin-bottom:14px}.back q{color:#444;display:block;margin-bottom:10px}
-.back.has-ill{justify-content:flex-start;padding:52px 18px 32px;font-size:.92rem;line-height:1.32}
-.back.has-ill .m{font-size:1.02rem;margin-bottom:6px}.back.has-ill q{margin-bottom:5px}.back.has-ill .col{margin-top:4px;gap:4px}
-.back .ill{display:block;width:100%;height:clamp(64px,11dvh,96px);object-fit:cover;border-radius:12px;margin:0 0 8px;flex:none;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
-@media (max-height:740px){.back.has-ill{padding:48px 16px 28px;font-size:.84rem;line-height:1.28}.back.has-ill .m{font-size:.95rem;margin-bottom:4px}.back.has-ill q{margin-bottom:3px}.back .ill{height:58px;margin-bottom:6px}}
+.back.has-ill{justify-content:flex-start;padding:46px 22px 36px;font-size:1.06rem;line-height:1.45}
+.back.has-ill .spread{flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-evenly;min-height:0}
+.back.has-ill .m{font-size:1.2rem;margin-bottom:0}.back.has-ill q{margin-bottom:0}.back.has-ill .col{margin-top:0}
+.back.has-ill .col span{font-size:.92rem}
+.back .ill{display:block;width:100%;height:clamp(40px,7dvh,64px);object-fit:cover;border-radius:12px;margin:0 0 4px;flex:none;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
+@media (max-height:740px){.back.has-ill{padding:42px 16px 32px}.back .ill{height:36px;margin-bottom:2px}}
 .col{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.col span{background:#fbe9b7;border-radius:999px;padding:3px 10px;font-size:.85rem;color:#5a4320}
 .src{position:absolute;bottom:14px;right:22px;font-size:.8rem;color:#8a6d46}
 .tag{position:absolute;top:14px;left:22px;font-size:.75rem;color:#8a6d46;letter-spacing:.1em}
@@ -35,14 +37,15 @@ button.mark.learn svg{opacity:0}button.mark.learn.on{background:#8a6d46;color:#f
 .nav{margin-top:10px;display:flex;gap:12px;align-items:center}
 button{font:inherit;background:#8a6d46;color:#fff;border:0;border-radius:999px;padding:10px 18px;cursor:pointer}
 #count{color:#8a6d46;min-width:60px;text-align:center}
-#quiz{display:none;width:min(92vw,560px);background:#fff;border:3px solid #8a6d46;border-radius:22px;padding:24px;box-sizing:border-box;box-shadow:0 14px 40px rgba(0,0,0,.12)}
+#quiz{display:none;width:min(92vw,560px);max-height:min(78dvh,680px);overflow:auto;background:#fff;border:3px solid #8a6d46;border-radius:22px;padding:24px;box-sizing:border-box;box-shadow:0 14px 40px rgba(0,0,0,.12)}
 #quiz .qt{font-size:.75rem;color:#8a6d46;letter-spacing:.1em;margin-bottom:10px}#quiz .qq{font-size:1.1rem;line-height:1.45;margin-bottom:16px}
+#quiz .qill{display:block;width:100%;height:clamp(112px,30dvh,210px);object-fit:cover;border-radius:14px;margin:0 0 12px;background:#efe8dc;box-shadow:0 0 0 1px rgba(138,109,70,.35)}
 #quiz .opt{display:block;width:100%;margin:8px 0;background:#f4efe6;color:#222;text-align:left;border-radius:14px}
 #quiz .opt.ok{background:#bfe3b4}#quiz .opt.no{background:#f2b8b0}#quiz .sc{color:#8a6d46;margin-top:12px;text-align:center}
 body.qz .stage,body.qz #prev,body.qz #next,body.qz #play,body.qz #shuf,body.qz #count{display:none}body.qz #quiz{display:block}
 .top{display:flex;gap:10px;align-items:center;margin:0 0 10px;flex-wrap:wrap;justify-content:center}.top #deck,.top #kind,.top #prog{margin:0}#kind,#prog{font:inherit;font-size:1rem;color:#8a6d46;background:#fff;border:2px solid #8a6d46;border-radius:999px;padding:8px 16px}.seg{display:flex;border:2px solid #8a6d46;border-radius:999px;overflow:hidden}.seg button{border-radius:0;background:#fff;color:#8a6d46;padding:8px 16px}.seg button.on{background:#8a6d46;color:#fff}
 </style></head><body>
-<div class="top"><select id="deck"></select><select id="kind"></select><select id="prog" aria-label="Progress"><option value="">All</option><option value="fav">Favorites</option><option value="learned">Learned</option><option value="new">Unlearned</option></select><div class="seg"><button id="mc" class="on">Cards</button><button id="mq">Quiz</button></div></div>
+<div class="top"><select id="deck"></select><select id="kind"></select><select id="prog" aria-label="Progress"><option value="">All</option><option value="fav">Favorites</option><option value="learned">Learned</option><option value="new">Unlearned</option></select><div class="seg"><button id="mc" class="on">Cards</button><button id="mq">Quiz</button><button id="mi" aria-label="Image quiz">Image</button></div></div>
 <div class="stage" id="stage"></div><div id="quiz"></div>
 <div class="nav"><button id="prev">‹</button><button id="play">Pause</button><span id="count"></span><button id="shuf">Shuffle</button><button id="next">›</button></div>
 <script src="cards.js"></script>
@@ -66,9 +69,11 @@ const CHECK=`<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
 function marks(c){const s=starred(c),l=learned(c);return `<div class="marks"><button type="button" class="mark fav${s?' on':''}" aria-label="Favorite" aria-pressed="${s}">${STAR}</button><button type="button" class="mark learn${l?' on':''}" aria-label="Learned" aria-pressed="${l}">${CHECK}</button></div>`}
 const st=document.getElementById('stage');let order=C.map((_,i)=>i),i=0,play=true,t;
 function build(){st.innerHTML='';if(!C.length){st.innerHTML='<div class="empty">No cards match these filters.</div>';document.getElementById('count').textContent='0 / 0';return}order.forEach((k)=>{const c=C[k],d=document.createElement('div');d.className='card hidden';
-const ill=c.image?`<img class="ill" src="${c.image}" alt="">`:'',m=marks(c);
-d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span>${m}<div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
-<div class="face back${c.image?' has-ill':''}"><span class="tag">MEANING</span>${m}${ill}<div class="m">${c.meaning}</div>${c.quote?`<q>${c.quote}</q>`:""}${c.example?`<q>${c.example}</q>`:""}<div class="col">${c.collocations.map(x=>`<span>${x}</span>`).join("")}</div><span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>`;
+const ill=c.image?`<img class="ill" src="${c.image}" alt="">`:'';
+const body=`<div class="m">${c.meaning}</div>${c.quote?`<q>${c.quote}</q>`:""}${c.example?`<q>${c.example}</q>`:""}<div class="col">${c.collocations.map(x=>`<span>${x}</span>`).join("")}</div>`;
+const back=c.image?`${ill}<div class="spread">${body}</div>`:body;
+d.innerHTML=`<div class="inner"><div class="face front"><span class="tag">WORD</span>${marks(c)}<div class="w">${c.word}</div><div class="p">${c.pos}</div><span class="src">tap to flip</span></div>
+<div class="face back${c.image?' has-ill':''}"><span class="tag">MEANING</span>${back}<span class="src">${c.book}${c.page?" · "+c.page:""}</span></div></div>`;
 d.onclick=e=>{if(e.target.closest('.mark'))return;if(Date.now()-sw<400)return;d.classList.toggle('flipped');reset()};
 d.querySelectorAll('.mark').forEach(b=>b.onclick=e=>{e.stopPropagation();const flag=b.classList.contains('fav')?'star':'learned';setFlag(c,flag);const on=flag==='star'?starred(c):learned(c);d.querySelectorAll(flag==='star'?'.mark.fav':'.mark.learn').forEach(x=>{x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false')});if(!match(c))filt()});
 const img=d.querySelector('img.ill');if(img)img.onerror=()=>{const b=img.closest('.back');if(b)b.classList.remove('has-ill');img.remove()};
@@ -84,22 +89,28 @@ let x0,sw=0;st.addEventListener('touchstart',e=>x0=e.touches[0].clientX);st.addE
 document.onkeydown=e=>{if(!C.length)return;if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1);if(e.key==' '){e.preventDefault();st.children[i].click()}};
 build();reset();
 
-let qs=0,qn=0;
+let qs=0,qn=0,qmode='cards';
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
 function blank(c){if(!c.quote)return null;const w=c.word.replace(/one's|someone's|oneself/g,'').trim().split(/\s+/).filter(x=>x.length>2);let s=c.quote,hit=0;w.forEach(x=>{const r=new RegExp('\\b'+esc(x.slice(0,Math.max(3,x.length-2)))+'\\w*','gi');if(r.test(s)){hit++;s=s.replace(r,'_____')}});return hit?s:null}
-function ask(){const q=document.getElementById('quiz');if(C.length<2){q.innerHTML='<div class="qq">Need at least two cards in this deck.</div>';return}
-const c=C[Math.floor(Math.random()*C.length)],pool=C.filter(x=>x!==c).sort(()=>Math.random()-.5).slice(0,3),opts=[c,...pool].sort(()=>Math.random()-.5);
+function grade(q,opts,c,btn){if(q.dataset.done==1)return;q.dataset.done=1;const ch=opts[btn.dataset.k];qn++;if(ch===c)qs++;
+q.querySelectorAll('.opt').forEach(o=>{if(opts[o.dataset.k]===c)o.classList.add('ok')});if(ch!==c)btn.classList.add('no');
+q.querySelector('.sc').innerHTML=`${qs} / ${qn} correct<br><small>${c.word}: ${c.meaning}</small><br><button id="nq" style="margin-top:10px">Next question</button>`;document.getElementById('nq').onclick=ask}
+function choices(pool,c){return [c,...pool.filter(x=>x!==c).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5)}
+function askImage(){const q=document.getElementById('quiz');const pool=C.filter(c=>c.image);if(pool.length<2){q.innerHTML='<div class="qq">Need at least two illustrated cards in this deck.</div>';return}
+const c=pool[Math.floor(Math.random()*pool.length)],opts=choices(pool,c);
+q.innerHTML=`<div class="qt">IMAGE QUIZ</div><img class="qill" src="${c.image}" alt=""><div class="qq">Which word is this?</div>`+opts.map((x,k)=>`<button class="opt" data-k="${k}">${x.word}</button>`).join('')+`<div class="sc">${qs} / ${qn} correct</div>`;
+q.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>grade(q,opts,c,btn));q.dataset.done=0}
+function ask(){if(qmode==='image')return askImage();const q=document.getElementById('quiz');if(C.length<2){q.innerHTML='<div class="qq">Need at least two cards in this deck.</div>';return}
+const c=C[Math.floor(Math.random()*C.length)],opts=choices(C,c);
 const b=blank(c),type=Math.random()<.5&&b?1:0,type2=Math.random()<.3;
 let title,txt,lab;
 if(type){title='FILL THE GAP';txt=b;lab=x=>x.word}
 else if(type2){title='WHAT DOES IT MEAN?';txt='<b>'+c.word+'</b>';lab=x=>x.meaning}
 else{title='WHICH ONE MEANS…';txt=c.meaning;lab=x=>x.word}
 q.innerHTML=`<div class="qt">${title}</div><div class="qq">${txt}</div>`+opts.map((x,k)=>`<button class="opt" data-k="${k}">${lab(x)}</button>`).join('')+`<div class="sc">${qs} / ${qn} correct</div>`;
-q.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{if(q.dataset.done==1)return;q.dataset.done=1;const ch=opts[btn.dataset.k];qn++;if(ch===c)qs++;
-q.querySelectorAll('.opt').forEach(o=>{if(opts[o.dataset.k]===c)o.classList.add('ok')});if(ch!==c)btn.classList.add('no');
-q.querySelector('.sc').innerHTML=`${qs} / ${qn} correct<br><small>${c.word}: ${c.meaning}</small><br><button id="nq" style="margin-top:10px">Next question</button>`;document.getElementById('nq').onclick=ask});q.dataset.done=0}
-function mode(q){document.body.classList.toggle('qz',q);mc.classList.toggle('on',!q);mq.classList.toggle('on',q);if(q){clearInterval(t);qs=qn=0;ask()}else reset()}
-mc.onclick=()=>mode(false);mq.onclick=()=>mode(true);
+q.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>grade(q,opts,c,btn));q.dataset.done=0}
+function mode(m){qmode=m;const quiz=m!=='cards';document.body.classList.toggle('qz',quiz);mc.classList.toggle('on',m==='cards');mq.classList.toggle('on',m==='quiz');mi.classList.toggle('on',m==='image');if(quiz){clearInterval(t);qs=qn=0;ask()}else reset()}
+mc.onclick=()=>mode('cards');mq.onclick=()=>mode('quiz');mi.onclick=()=>mode('image');
 [dk,kd,pg].forEach(s=>s.addEventListener('change',()=>{if(document.body.classList.contains('qz')){qs=qn=0;ask()}}));
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)reset()});window.addEventListener('pageshow',reset);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');

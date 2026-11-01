@@ -1,4 +1,4 @@
-const V='words-v29';const F=['./','index.html','cards.js','manifest.json','icon-192.png','icon-512.png','images/gnarled.jpg','images/bogs.jpg','images/loam.jpg','images/bark.jpg','images/scaly.jpg','images/strewn.jpg','images/doused.jpg','images/brackishness.jpg'];
+const V='words-v30';const F=['./','index.html','cards.js','manifest.json','icon-192.png','icon-512.png','images/gnarled.jpg','images/bogs.jpg','images/loam.jpg','images/bark.jpg','images/scaly.jpg','images/strewn.jpg','images/doused.jpg','images/brackishness.jpg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(F)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))));self.clients.claim()});
 function good(r,req){if(!r||!r.ok||r.redirected)return false;const t=r.headers.get('content-type')||'';if(req.mode==='navigate'||req.url.endsWith('.html'))return t.includes('text/html');if(req.url.endsWith('.js'))return t.includes('javascript');return true}

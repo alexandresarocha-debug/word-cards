@@ -1,5 +1,6 @@
 // Add new cards here. Each card needs a 'book' field.
-// Optional "image": "images/example.jpg". Omit it, or leave it empty, for a text-only card.
+// Optional "image": "images/example.jpg". Add a photo only when it clearly helps a concrete word;
+// leave abstract words and phrases text-only. Omit the field, or leave it empty, for no image.
 const CARDS = [
  {
   "book": "A Short Stay in Hell",
