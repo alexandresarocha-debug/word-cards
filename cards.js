@@ -735,5 +735,18 @@ const CARDS = [
    "threw up her hands in despair",
    "throw up your hands and walk away"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "a shiver runs down one's spine",
+  "pos": "idiom",
+  "meaning": "a sudden cold tremor along the back from fear, dread, awe, or a thrill",
+  "quote": "When the voice on the line spoke her childhood nickname, a shiver ran down her spine, and she pressed the receiver harder against her ear.",
+  "example": "Instead of: She was frightened when the caller knew her childhood nickname.",
+  "page": "",
+  "collocations": [
+   "sent a shiver down my spine",
+   "a shiver of dread ran down his spine"
+  ]
  }
 ];
