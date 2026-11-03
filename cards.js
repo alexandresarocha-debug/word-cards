@@ -748,5 +748,18 @@ const CARDS = [
    "sent a shiver down my spine",
    "a shiver of dread ran down his spine"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "raise an eyebrow",
+  "pos": "idiom",
+  "meaning": "to lift one eyebrow in silent doubt, surprise, or wry disapproval",
+  "quote": "When Paulo announced he had finished the novel in a single afternoon, his sister raised an eyebrow and let her gaze drift to the uncut pages.",
+  "example": "Instead of: Paulo's sister did not believe he had read the whole novel.",
+  "page": "",
+  "collocations": [
+   "raised a skeptical eyebrow",
+   "the news raised a few eyebrows"
+  ]
  }
 ];
