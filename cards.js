@@ -761,5 +761,18 @@ const CARDS = [
    "raised a skeptical eyebrow",
    "the news raised a few eyebrows"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "dig one's heels in",
+  "pos": "idiom",
+  "meaning": "to plant oneself firmly and refuse to yield",
+  "quote": "When her father reached for the car keys, Marta dug her heels in, folded her arms, and stood squarely in the doorway.",
+  "example": "Instead of: Marta was very stubborn and would not let her father leave.",
+  "page": "",
+  "collocations": [
+   "dug his heels in and refused to budge",
+   "dig your heels in over the deal"
+  ]
  }
 ];
