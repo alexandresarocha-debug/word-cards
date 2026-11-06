@@ -774,5 +774,18 @@ const CARDS = [
    "dug his heels in and refused to budge",
    "dig your heels in over the deal"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "purse one's lips",
+  "pos": "idiom",
+  "meaning": "to press the lips together into a tight line, signaling disapproval, reluctance, concentration, or a reply held back",
+  "quote": "When he offered to rewrite the ending for her, Isabel pursed her lips and turned the manuscript facedown on the desk.",
+  "example": "Instead of: Isabel disliked his suggestion and did not want him to change her ending.",
+  "page": "",
+  "collocations": [
+   "pursed her lips in disapproval",
+   "purse your lips and say nothing"
+  ]
  }
 ];
