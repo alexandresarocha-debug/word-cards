@@ -787,5 +787,18 @@ const CARDS = [
    "pursed her lips in disapproval",
    "purse your lips and say nothing"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "set one's jaw",
+  "pos": "idiom",
+  "meaning": "to tighten and firm the jaw, signaling resolve, stubborn determination, or emotion held under tight control",
+  "quote": "When the editor asked for another rewrite by Friday, Lucia set her jaw and opened a clean page without looking up.",
+  "example": "Instead of: Lucia was determined and refused to show how frustrated she felt.",
+  "page": "",
+  "collocations": [
+   "set her jaw and refused to yield",
+   "set his jaw against the news"
+  ]
  }
 ];
