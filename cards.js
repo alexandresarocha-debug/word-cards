@@ -800,5 +800,18 @@ const CARDS = [
    "set her jaw and refused to yield",
    "set his jaw against the news"
   ]
+ },
+ {
+   "book": "Aleksei's phrases",
+   "word": "stare into space",
+   "pos": "idiom",
+   "meaning": "to gaze blankly at nothing in particular, the mind elsewhere, lost in thought, shock, or grief",
+   "quote": "She sat at the kitchen table long after the call ended, staring into space while her tea went cold beside her.",
+   "example": "Instead of: She was devastated by the news.",
+   "page": "",
+   "collocations": [
+     "sat staring into space",
+     "stare into space for hours"
+   ]
  }
 ];
