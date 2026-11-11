@@ -813,5 +813,18 @@ const CARDS = [
      "sat staring into space",
      "stare into space for hours"
    ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "swallow hard",
+  "pos": "idiom",
+  "meaning": "to force a visible gulp of the throat, usually to suppress fear, grief, or emotion before speaking",
+  "quote": "Elena swallowed hard, the letter trembling between her fingers, and read the first line aloud in a voice not quite her own.",
+  "example": "Instead of: Elena was nervous and upset about reading the letter.",
+  "page": "",
+  "collocations": [
+   "swallow hard and nod",
+   "swallowed hard before speaking"
+  ]
  }
 ];
