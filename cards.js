@@ -802,17 +802,17 @@ const CARDS = [
   ]
  },
  {
-   "book": "Aleksei's phrases",
-   "word": "stare into space",
-   "pos": "idiom",
-   "meaning": "to gaze blankly at nothing in particular, the mind elsewhere, lost in thought, shock, or grief",
-   "quote": "She sat at the kitchen table long after the call ended, staring into space while her tea went cold beside her.",
-   "example": "Instead of: She was devastated by the news.",
-   "page": "",
-   "collocations": [
-     "sat staring into space",
-     "stare into space for hours"
-   ]
+  "book": "Aleksei's phrases",
+  "word": "stare into space",
+  "pos": "idiom",
+  "meaning": "to gaze blankly at nothing in particular, the mind elsewhere, lost in thought, shock, or grief",
+  "quote": "She sat at the kitchen table long after the call ended, staring into space while her tea went cold beside her.",
+  "example": "Instead of: She was devastated by the news.",
+  "page": "",
+  "collocations": [
+   "sat staring into space",
+   "stare into space for hours"
+  ]
  },
  {
   "book": "Aleksei's phrases",
@@ -825,6 +825,19 @@ const CARDS = [
   "collocations": [
    "swallow hard and nod",
    "swallowed hard before speaking"
+  ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "tap one's foot",
+  "pos": "idiom",
+  "meaning": "to strike the floor lightly and repeatedly with the foot, usually from impatience or restless energy",
+  "quote": "Marta glanced at the clock, then tapped her foot against the table leg, quick and sharp, until the waiter finally looked her way.",
+  "example": "Instead of: Marta was impatient waiting for the waiter.",
+  "page": "",
+  "collocations": [
+   "tap her foot impatiently",
+   "tapped his foot against the floor"
   ]
  }
 ];
