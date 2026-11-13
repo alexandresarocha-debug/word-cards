@@ -839,5 +839,18 @@ const CARDS = [
    "tap her foot impatiently",
    "tapped his foot against the floor"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "bite back a smile",
+  "pos": "idiom",
+  "meaning": "to suppress a smile by pressing the lips together, hiding amusement or pleasure that one would rather not reveal",
+  "quote": "Inês bit back a smile as the old professor mispronounced her name again, pressing her lips flat until the corner of her mouth stopped twitching.",
+  "example": "Instead of: Inês was amused but did not want to show it.",
+  "page": "",
+  "collocations": [
+   "bite back a smile at the joke",
+   "bit back a grin"
+  ]
  }
 ];
