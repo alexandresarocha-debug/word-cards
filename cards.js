@@ -852,5 +852,18 @@ const CARDS = [
    "bite back a smile at the joke",
    "bit back a grin"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "let out a breath one did not know one was holding",
+  "pos": "idiom",
+  "meaning": "to exhale audibly as tension releases, revealing relief the person had not realized they were suppressing",
+  "quote": "When the doctor smiled and closed the folder, Tomás let out a breath he had not known he was holding, and his shoulders dropped an inch.",
+  "example": "Instead of: Tomás was relieved when the doctor gave him good news.",
+  "page": "",
+  "collocations": [
+   "let out a breath he didn't know he was holding",
+   "finally let out a long breath"
+  ]
  }
 ];
