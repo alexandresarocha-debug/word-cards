@@ -865,5 +865,18 @@ const CARDS = [
    "let out a breath he didn't know he was holding",
    "finally let out a long breath"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "one's knuckles whiten",
+  "pos": "idiom",
+  "meaning": "to grip something so tightly that the skin over the knuckles turns pale, betraying fear, anger, or strain",
+  "quote": "Helena's knuckles whitened around the steering wheel as the headlights behind her swelled and the road narrowed to a single dark ribbon.",
+  "example": "Instead of: Helena was frightened by the car following her.",
+  "page": "",
+  "collocations": [
+   "knuckles whitened on the wheel",
+   "her knuckles went white"
+  ]
  }
 ];
