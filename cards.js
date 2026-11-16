@@ -878,5 +878,18 @@ const CARDS = [
    "knuckles whitened on the wheel",
    "her knuckles went white"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "shift in one's seat",
+  "pos": "idiom",
+  "meaning": "to move one's weight restlessly while seated, betraying discomfort, impatience, or unease",
+  "quote": "Marta shifted in her seat as the verdict was read, crossing and uncrossing her ankles.",
+  "example": "Instead of: Marta felt deeply uneasy as the verdict was read.",
+  "page": "",
+  "collocations": [
+   "shift uncomfortably in one's seat",
+   "shift in one's seat impatiently"
+  ]
  }
 ];
