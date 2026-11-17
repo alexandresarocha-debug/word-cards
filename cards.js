@@ -891,5 +891,18 @@ const CARDS = [
    "shift uncomfortably in one's seat",
    "shift in one's seat impatiently"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "blink back tears",
+  "pos": "idiom",
+  "meaning": "to blink rapidly in order to keep tears from falling, a sign of suppressed grief or emotion",
+  "quote": "She stared hard at the ceiling and blinked back tears, her voice steady only because she kept it short.",
+  "example": "Instead of: She was heartbroken by the news but tried not to cry.",
+  "page": "",
+  "collocations": [
+   "blink back tears of grief",
+   "fight to blink back tears"
+  ]
  }
 ];
