@@ -904,5 +904,18 @@ const CARDS = [
    "blink back tears of grief",
    "fight to blink back tears"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "rub the back of one's neck",
+  "pos": "idiom",
+  "meaning": "to knead or stroke the nape with one hand, a gesture of embarrassment, unease, or weary reluctance",
+  "quote": "Daniel rubbed the back of his neck and studied the carpet, as though the answer might be woven into its pattern.",
+  "example": "Instead of: Daniel felt embarrassed and did not know how to answer.",
+  "page": "",
+  "collocations": [
+   "rub the back of one's neck sheepishly",
+   "rub the back of one's neck nervously"
+  ]
  }
 ];
