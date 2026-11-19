@@ -917,5 +917,18 @@ const CARDS = [
    "rub the back of one's neck sheepishly",
    "rub the back of one's neck nervously"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "fidget with one's cuff",
+  "pos": "idiom",
+  "meaning": "to pluck or twist at the edge of one's sleeve, a small nervous gesture that betrays unease or impatience",
+  "quote": "Marguerite fidgeted with her cuff, twisting the button until the thread began to loosen, while the notary read out the will.",
+  "example": "Instead of: Marguerite was nervous while the notary read out the will.",
+  "page": "",
+  "collocations": [
+   "fidget with one's cuff nervously",
+   "fidget with one's cuff impatiently"
+  ]
  }
 ];
