@@ -930,5 +930,18 @@ const CARDS = [
    "fidget with one's cuff nervously",
    "fidget with one's cuff impatiently"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "tug at one's collar",
+  "pos": "idiom",
+  "meaning": "to pull at the neckband of one's shirt as though it had grown tight, betraying nerves, guilt, or heat under scrutiny",
+  "quote": "Henrique tugged at his collar as the inspector turned another page of the ledger, and a bead of sweat slid down behind his ear.",
+  "example": "Instead of: Henrique was nervous and afraid the inspector would discover his mistakes.",
+  "page": "",
+  "collocations": [
+   "tug at one's collar nervously",
+   "tug at one's collar under questioning"
+  ]
  }
 ];
