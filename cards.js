@@ -943,5 +943,18 @@ const CARDS = [
    "tug at one's collar nervously",
    "tug at one's collar under questioning"
   ]
+ },
+ {
+  "book": "Aleksei's phrases",
+  "word": "clear one's throat",
+  "pos": "idiom",
+  "meaning": "to cough lightly to gain attention, mask hesitation, or steady oneself before speaking",
+  "quote": "He cleared his throat twice, studying the grain of the table before he finally said her name.",
+  "example": "Instead of: He was nervous about admitting the mistake.",
+  "page": "",
+  "collocations": [
+   "clear one's throat nervously",
+   "clear one's throat before speaking"
+  ]
  }
 ];
