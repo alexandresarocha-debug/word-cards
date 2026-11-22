@@ -956,5 +956,17 @@ const CARDS = [
    "clear one's throat nervously",
    "clear one's throat before speaking"
   ]
+ },{
+  "book": "Aleksei's phrases",
+  "word": "twist one's ring",
+  "pos": "idiom",
+  "meaning": "to turn a ring round and round on the finger, a small private gesture of nerves, doubt, or buried feeling",
+  "quote": "Marta turned her ring a slow half-circle, then another, while the judge shuffled his papers.",
+  "example": "Instead of: Marta was anxious about the verdict.",
+  "page": "",
+  "collocations": [
+   "twist one's ring nervously",
+   "twist one's ring while waiting"
+  ]
  }
 ];
