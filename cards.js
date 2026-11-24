@@ -968,5 +968,18 @@ const CARDS = [
    "twist one's ring nervously",
    "twist one's ring while waiting"
   ]
- }
+ },
+{
+ "book": "Aleksei's phrases",
+ "word": "chew the inside of one's cheek",
+ "pos": "idiom",
+ "meaning": "to worry the soft flesh of the inner cheek between the teeth, a private sign of nerves, anxiety, or held-back words",
+ "quote": "Marta chewed the inside of her cheek while the doctor turned the page, tasting a faint copper of her own making.",
+ "example": "Instead of: Marta was anxious while the doctor read her results.",
+ "page": "",
+ "collocations": [
+  "chew the inside of one's cheek nervously",
+  "chew the inside of one's cheek while waiting"
+ ]
+}
 ];
