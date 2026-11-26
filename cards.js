@@ -981,5 +981,18 @@ const CARDS = [
   "chew the inside of one's cheek nervously",
   "chew the inside of one's cheek while waiting"
  ]
+},
+{
+ "book": "Aleksei's phrases",
+ "word": "avert one's gaze",
+ "pos": "idiom",
+ "meaning": "to turn one's eyes away deliberately, often to avoid contact or conceal feeling",
+ "quote": "She averted her gaze and studied the grain of the table, as though the wood might absolve her.",
+ "example": "Instead of: She was ashamed of what she had said.",
+ "page": "",
+ "collocations": [
+  "avert one's gaze in shame",
+  "avert one's gaze from someone"
+ ]
 }
 ];
