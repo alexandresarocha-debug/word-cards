@@ -994,5 +994,18 @@ const CARDS = [
   "avert one's gaze in shame",
   "avert one's gaze from someone"
  ]
+},
+{
+ "book": "Aleksei's phrases",
+ "word": "pinch the bridge of one's nose",
+ "pos": "idiom",
+ "meaning": "to squeeze the top of the nose between thumb and forefinger, usually with eyes closed, to signal fatigue, strain or suppressed exasperation",
+ "quote": "He closed his eyes and pinched the bridge of his nose, holding the pose until the ringing in his ears subsided.",
+ "example": "Instead of: He was exhausted and exasperated.",
+ "page": "",
+ "collocations": [
+  "pinch the bridge of one's nose in frustration",
+  "pinch the bridge of one's nose and sigh"
+ ]
 }
 ];
