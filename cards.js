@@ -1007,5 +1007,18 @@ const CARDS = [
   "pinch the bridge of one's nose in frustration",
   "pinch the bridge of one's nose and sigh"
  ]
+},
+{
+ "book": "Aleksei's phrases",
+ "word": "run a hand through one's hair",
+ "pos": "idiom",
+ "meaning": "to drag the fingers back through the hair, a gesture of frustration, fatigue, or nervous uncertainty",
+ "quote": "He ran a hand through his hair, then did it again, as though the verdict might be combed out of him.",
+ "example": "Instead of: He was anxious about the verdict.",
+ "page": "",
+ "collocations": [
+  "run a hand through one's hair nervously",
+  "run a hand through one's hair in frustration"
+ ]
 }
 ];
